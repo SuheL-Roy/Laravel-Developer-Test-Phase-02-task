@@ -150,11 +150,11 @@
     <script>
         $(document).ready(function() {
             $('#createForm').on('submit', function(e) {
-                e.preventDefault(); /
+                e.preventDefault(); // prevent form from submitting normally
 
                 let formData = new FormData(this);
 
-                
+                // Clear previous error messages
                 $('.error-message').text('');
 
                 $.ajax({
@@ -170,14 +170,10 @@
                         // Success logic here
                         $('#createForm')[0].reset(); // clear the form
                         $('#product_image_input').val('');
-
-                        // Hide and clear preview image
                         $('#product_image_preview').attr('src', '').hide();
-
-                      
-                        $('#imageError').text('');
                         toastr.success('Post created successfully!');
-                      
+                        // alert('Post created successfully!');
+                        // Optionally reload the post list table
                     },
                     error: function(xhr) {
                         if (xhr.status === 422) {
